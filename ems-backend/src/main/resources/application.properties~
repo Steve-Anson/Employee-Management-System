@@ -1,0 +1,7 @@
+spring.application.name=ems-backend
+spring.datasource.url=jdbc:mysql://sql.freedb.tech:3306/freedb_employeems
+spring.datasource.username=freedb_steve
+spring.datasource.password=dT$pp523G#$spu7
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.hibernate
