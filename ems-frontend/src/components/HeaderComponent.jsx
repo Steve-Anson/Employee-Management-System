@@ -3,7 +3,7 @@ const HeaderComponent = () => {
     <div>
       <header>
         <nav className="navbar navbar-dark bg-dark">
-          <a class="navbar-brand" href="#">
+          <a className="navbar-brand" href="#">
             Employee Management System
           </a>
         </nav>
