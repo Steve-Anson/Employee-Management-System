@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
-import { createEmployee, getEmployee } from "../services/EmployeeService";
+import {
+  createEmployee,
+  getEmployee,
+  updateEmployee,
+} from "../services/EmployeeService";
 import { useNavigate, useParams } from "react-router-dom";
 
 const EmployeeComponent = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+
+  const { id } = useParams();
 
   useEffect(() => {
     if (id) {
@@ -26,19 +32,28 @@ const EmployeeComponent = () => {
     email: "",
   });
 
-  const { id } = useParams();
-
   const navigate = useNavigate();
 
-  function saveEmployee(e) {
+  function saveOrUpdateEmployee(e) {
     e.preventDefault();
 
     if (validateForm()) {
       const employee = { firstName, lastName, email };
-      createEmployee(employee).then((response) => {
-        console.log(response.data);
-        navigate("/employees");
-      });
+      if (id) {
+        updateEmployee(id, employee)
+          .then((response) => {
+            console.log(response.data);
+            navigate("/employees");
+          })
+          .catch((error) => console.error(error));
+      } else {
+        createEmployee(employee)
+          .then((response) => {
+            console.log(response.data);
+            navigate("/employees");
+          })
+          .catch((error) => console.error(error));
+      }
     }
   }
 
@@ -70,18 +85,11 @@ const EmployeeComponent = () => {
     return valid;
   }
 
-  function pageTitle() {
-    if (id) {
-      return <h2 className="text-center">Update Employee</h2>;
-    }
-    return <h2 className="text-center">Add Employee</h2>;
-  }
-
   return (
     <div className="container mt-5">
       <div className="row">
         <div className="card col-md-6 offset-md-3 offset-md-3 pt-4">
-          {pageTitle()}
+          <h2 className="text-center">{id ? "Update" : "Add"} Employee</h2>
           <div className="card-body">
             <form>
               <div className="form-group mb-2">
@@ -133,8 +141,11 @@ const EmployeeComponent = () => {
                 )}
               </div>
 
-              <button className="btn btn-success mt-2" onClick={saveEmployee}>
-                Submit
+              <button
+                className="btn btn-success mt-2"
+                onClick={saveOrUpdateEmployee}
+              >
+                {id ? "Update" : "Submit"}
               </button>
             </form>
           </div>
