@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { listDepartments } from "../services/DepartmentService";
+import { Link } from "react-router-dom";
 
 const ListDepartmentComponent = () => {
   const [departments, setDepartments] = useState([]);
@@ -13,7 +14,10 @@ const ListDepartmentComponent = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center mt-4">List of Departments</h1>
+      <h2 className="text-center mt-4">List of Departments</h2>
+      <Link to="/add-department" className="btn btn-primary">
+        Add department
+      </Link>
       <table className="table table-striped table-bordered mt-2">
         <thead>
           <tr>
