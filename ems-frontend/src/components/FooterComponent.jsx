@@ -1,7 +1,7 @@
 const FooterComponent = () => {
   return (
     <div>
-      <footer className="footer">
+      <footer className="footer py-2">
         <span>All rights reserved 2025</span>
       </footer>
     </div>
