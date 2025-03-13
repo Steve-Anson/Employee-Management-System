@@ -30,6 +30,12 @@ function App() {
 
           {/*http://localhost:3001/add-department*/}
           <Route path="/add-department" element={<DepartmentComponent />} />
+
+          {/*http://localhost:3001/edit-department/:id*/}
+          <Route
+            path="/edit-department/:id"
+            element={<DepartmentComponent />}
+          />
         </Routes>
         <FooterComponent />
       </BrowserRouter>

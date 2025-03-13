@@ -6,3 +6,6 @@ export const listDepartments = () => axios.get(REST_API_BASE_URL);
 
 export const createDepartment = (department) =>
   axios.post(REST_API_BASE_URL, department);
+
+export const getDepartmentById = (departmentId) =>
+  axios.get(`${REST_API_BASE_URL}/${departmentId}`);
