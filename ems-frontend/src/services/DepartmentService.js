@@ -12,3 +12,6 @@ export const getDepartmentById = (departmentId) =>
 
 export const updateDepartment = (departmentId, department) =>
   axios.put(`${REST_API_BASE_URL}/${departmentId}`, department);
+
+export const deleteDepartmentById = (departmentId) =>
+  axios.delete(`${REST_API_BASE_URL}/${departmentId}`);
