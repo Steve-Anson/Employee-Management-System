@@ -1,13 +1,22 @@
 import { useState } from "react";
+import { createDepartment } from "../services/DepartmentService";
+import { useNavigate } from "react-router-dom";
 
 const DepartmentComponent = () => {
   const [departmentName, setDepartmentName] = useState("");
   const [departmentDescription, setDepartmentDescription] = useState("");
 
+  const navigate = useNavigate();
+
   function saveDepartment(e) {
     e.preventDefault();
     const department = { departmentName, departmentDescription };
-    console.log(department);
+    createDepartment(department)
+      .then((response) => {
+        console.log(response.data);
+        navigate("/departments");
+      })
+      .catch((error) => console.error(error));
   }
 
   return (
